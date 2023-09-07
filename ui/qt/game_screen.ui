@@ -67,7 +67,14 @@ QGroupBox{
     <item row="3" column="1">
      <layout class="QGridLayout" name="gridLayout">
       <item row="0" column="1">
-       <widget class="QLineEdit" name="lineEdit_user_input"/>
+       <widget class="QLineEdit" name="lineEdit_user_input">
+        <property name="styleSheet">
+         <string notr="true">QLineEdit{
+	
+	background-color: rgba(50,50,50, 0.9);
+}</string>
+        </property>
+       </widget>
       </item>
       <item row="0" column="2">
        <widget class="QPushButton" name="pushButton_guess">
@@ -114,6 +121,19 @@ QGroupBox{
       </property>
       <layout class="QGridLayout" name="gridLayout_3">
        <item row="0" column="0">
+        <spacer name="horizontalSpacer_4">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item row="0" column="1">
         <widget class="QLabel" name="label_robot_answer">
          <property name="styleSheet">
           <string notr="true">background-color: transparent;</string>
@@ -122,6 +142,19 @@ QGroupBox{
           <string>TextLabel</string>
          </property>
         </widget>
+       </item>
+       <item row="0" column="2">
+        <spacer name="horizontalSpacer_5">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </widget>

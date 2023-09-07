@@ -46,6 +46,10 @@ class Ui_GameScreen(object):
         self.gridLayout = QtWidgets.QGridLayout()
         self.gridLayout.setObjectName("gridLayout")
         self.lineEdit_user_input = QtWidgets.QLineEdit(parent=self.centralwidget)
+        self.lineEdit_user_input.setStyleSheet("QLineEdit{\n"
+"    \n"
+"    background-color: rgba(50,50,50, 0.9);\n"
+"}")
         self.lineEdit_user_input.setObjectName("lineEdit_user_input")
         self.gridLayout.addWidget(self.lineEdit_user_input, 0, 1, 1, 1)
         self.pushButton_guess = QtWidgets.QPushButton(parent=self.centralwidget)
@@ -63,13 +67,17 @@ class Ui_GameScreen(object):
         self.groupBox.setObjectName("groupBox")
         self.gridLayout_3 = QtWidgets.QGridLayout(self.groupBox)
         self.gridLayout_3.setObjectName("gridLayout_3")
+        spacerItem2 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.gridLayout_3.addItem(spacerItem2, 0, 0, 1, 1)
         self.label_robot_answer = QtWidgets.QLabel(parent=self.groupBox)
         self.label_robot_answer.setStyleSheet("background-color: transparent;")
         self.label_robot_answer.setObjectName("label_robot_answer")
-        self.gridLayout_3.addWidget(self.label_robot_answer, 0, 0, 1, 1)
+        self.gridLayout_3.addWidget(self.label_robot_answer, 0, 1, 1, 1)
+        spacerItem3 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.gridLayout_3.addItem(spacerItem3, 0, 2, 1, 1)
         self.gridLayout_2.addWidget(self.groupBox, 1, 1, 1, 1)
-        spacerItem2 = QtWidgets.QSpacerItem(429, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
-        self.gridLayout_2.addItem(spacerItem2, 4, 1, 1, 1)
+        spacerItem4 = QtWidgets.QSpacerItem(429, 20, QtWidgets.QSizePolicy.Policy.Expanding, QtWidgets.QSizePolicy.Policy.Minimum)
+        self.gridLayout_2.addItem(spacerItem4, 4, 1, 1, 1)
         GameScreen.setCentralWidget(self.centralwidget)
 
         self.retranslateUi(GameScreen)
