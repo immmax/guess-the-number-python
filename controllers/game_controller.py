@@ -8,6 +8,7 @@ class GameScreen(QMainWindow, Ui_GameScreen):
         super().__init__()
         self.parent = parent
         self.setupUi(self)
+        self.init_state()
         self.pushButton_guess.clicked.connect(self.guess)
         self.show()
 
@@ -37,11 +38,11 @@ class GameScreen(QMainWindow, Ui_GameScreen):
                                              QMessageBox.StandardButton.Yes,
                                              QMessageBox.StandardButton.No)
 
-        if result == QMessageBox.StandardButton.Yes:
-            self.init_state()
-        else:
-            self.parent.show()
-            self.close()
+            if result == QMessageBox.StandardButton.Yes:
+                self.init_state()
+            else:
+                self.parent.show()
+                self.close()
 
     def init_state(self):
         self.attempts = 7
