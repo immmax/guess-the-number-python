@@ -1,7 +1,8 @@
 from random import randint
 from PyQt6.QtWidgets import QMainWindow, QMessageBox
 from ui.py.game_screen_ui import Ui_GameScreen
-
+from lexicon.lexicon import WarningMessage, HigherNumber, LowerNumber,\
+                            WinMessage, LoseMessage, InitMessage
 
 class GameScreen(QMainWindow, Ui_GameScreen):
     def __init__(self, parent):
@@ -15,37 +16,44 @@ class GameScreen(QMainWindow, Ui_GameScreen):
     def guess(self):
         result = None
         self.attempts -= 1
-        user_number = int(self.lineEdit_user_input.text())
+        try:
+            user_number = int(self.lineEdit_user_input.text())
+        except Exception as e:
+            QMessageBox.information(self,
+                                    WarningMessage.header,
+                                    WarningMessage.body,
+                                    QMessageBox.StandardButton.Ok)
+            print(e)
+            return
         if user_number == self.number:
-            result = QMessageBox.information(self, "Победа!",
-                                             f"Вы угадали!\n\nБыло загадано\
-                                              число {self.number}\
-                                              \n\nХотите сыграть ещё?",
+            winMessage = WinMessage(number=self.number)
+            result = QMessageBox.information(self,
+                                             winMessage.header,
+                                             winMessage.body,
                                              QMessageBox.StandardButton.Yes,
                                              QMessageBox.StandardButton.No)
         elif user_number > self.number:
-            self.label_robot_answer.setText(f"Загаданное число меньше!\
-                \n\nОсталось {self.attempts} попыток.")
+            self.label_robot_answer.setText(LowerNumber(self.attempts).text)
         else:
-            self.label_robot_answer.setText(f"Загаданное число больше!\
-                \n\nОсталось {self.attempts} попыток.")
+            self.label_robot_answer.setText(HigherNumber(self.attempts).text)
 
         if self.attempts == 0:
-            result = QMessageBox.information(self, "Поражение!",
-                                             f"Жаль, но Вы не угадали!\n\n\
-                                             Было загадано число {self.number}\
-                                             \n\nХотите сыграть ещё?",
+            loseMessage = LoseMessage(number=self.number)
+            result = QMessageBox.information(self,
+                                             loseMessage.header,
+                                             loseMessage.body,
                                              QMessageBox.StandardButton.Yes,
                                              QMessageBox.StandardButton.No)
 
             if result == QMessageBox.StandardButton.Yes:
                 self.init_state()
-            else:
+            elif result == QMessageBox.StandardButton.No:
                 self.parent.show()
                 self.close()
+                return
 
     def init_state(self):
         self.attempts = 7
         self.number = randint(0, 100)
-        self.label_robot_answer.setText(f"Я загадал число от 1 до 100.\n\n\
-                                        У тебя {self.attempts} попыток.")
+        print(self.number)
+        self.label_robot_answer.setText(InitMessage(attempts=self.attempts).text)
